@@ -4,7 +4,7 @@ This year I'll be solving the [advent problems](https://adventofcode.com/) using
 
 ## :spiral_calendar: Days
 
-1. :star::star: (12/1/2021) [Solution](src/main/kotlin/Day01.kt)
+1. :star::star: (12/1/2021) [Solution](src/main/kotlin/com/github/markaalvaro/advent2021/Day01.kt)
 2. \-
 3. \-
 4. \-
