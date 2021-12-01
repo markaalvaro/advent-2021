@@ -15,7 +15,7 @@ This year I'll be solving the [advent problems](https://adventofcode.com/) using
 
 ### 1. `windowed(2)`
 
-A function that can be used on `Iterable`s and `Sequence`s to look at rolling windows of values. For example `listOf(1, 2, 3, 4, 5).windowed(2)`, would give us `[[1, 2], [2, 3], [3, 4], [4, 5]]. You can specify custom window sizes (e.g. 2, 3, 4), and you can specify that you're willing to accept partial windows once you get to the end of the iterable or sequence.
+A function that can be used on `Iterable`s and `Sequence`s to look at rolling windows of values. For example `listOf(1, 2, 3, 4, 5).windowed(2)`, would give us `[[1, 2], [2, 3], [3, 4], [4, 5]]`. You can specify custom window sizes (e.g. window size of 3 to get sub-lists of size 3), and you can specify that you're willing to accept partial windows once you get to the end of the iterable or sequence.
 
 ### 2. `count { it[1] > it [0] }`
 
