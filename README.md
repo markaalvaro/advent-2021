@@ -2,6 +2,8 @@
 
 This year I'll be solving the [advent problems](https://adventofcode.com/) using Kotlin! :clinking_glasses:
 
+If you're interested in trying out Kotlin for AoC this year or even next, checkout [this YouTube video](https://youtu.be/6-XSehwRgSY) from the Kotlin team. They provide some tips for helpful Kotlin functions, instructions for their AoC giveaway, and a template to help you get started!
+
 ## :spiral_calendar: Days
 
 1. :star::star: (12/1/2021) [Solution](src/main/kotlin/com/github/markaalvaro/advent2021/Day01.kt)
