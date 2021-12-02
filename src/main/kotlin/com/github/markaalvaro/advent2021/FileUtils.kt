@@ -8,4 +8,9 @@ object FileUtils {
             .lines()
             .map { it.trim() }
     }
+
+    fun <T> readFile(fileName: String, transformation: (String) -> T): List<T> {
+        return readFile(fileName)
+            .map(transformation)
+    }
 }
