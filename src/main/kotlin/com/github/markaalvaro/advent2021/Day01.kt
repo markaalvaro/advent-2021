@@ -1,5 +1,7 @@
 package com.github.markaalvaro.advent2021
 
+const val DAY_1_FILE_NAME = "Day01.txt"
+
 fun depthIncreases(fileName: String): Int {
     return readFile(fileName) { it.toInt() }
         .windowed(2)
@@ -15,7 +17,6 @@ fun depthSumIncreases(fileName: String): Int {
 }
 
 fun main() {
-    val fileName = "Day01.txt"
-    println(depthIncreases(fileName))
-    println(depthSumIncreases(fileName))
+    println(depthIncreases(DAY_1_FILE_NAME))
+    println(depthSumIncreases(DAY_1_FILE_NAME))
 }
