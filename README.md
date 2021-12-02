@@ -7,7 +7,7 @@ If you're interested in trying out Kotlin for AoC this year or even next, check 
 ## :spiral_calendar: Days
 
 1. :star::star: (12/1/2021) [Solution](src/main/kotlin/com/github/markaalvaro/advent2021/Day01.kt)
-2. \-
+2. :star::star: (12/2/2021) [Solution](src/main/kotlin/com/github/markaalvaro/advent2021/Day02.kt)
 3. \-
 4. \-
 
