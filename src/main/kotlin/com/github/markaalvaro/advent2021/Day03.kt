@@ -1,7 +1,5 @@
 package com.github.markaalvaro.advent2021
 
-import java.util.stream.Collectors
-
 const val DAY3_FILE_NAME = "Day03.txt"
 
 fun part1() : Int {
@@ -16,16 +14,17 @@ fun part1() : Int {
         }
 
     val a = counts.values.map { it > 500 }.joinToString("") { if (it) "1" else "0" }
-    val b = counts.values.map { it < 500 }.joinToString("") { if (it) "1" else "0" }
+    val b = a.toList().map { if (it == '1') '0' else '1' }.joinToString("")
 
     return Integer.parseInt(a, 2) * Integer.parseInt(b, 2)
 }
 
 fun part2() : Int {
     var oxygen = readFile(DAY3_FILE_NAME)
-    var cO2 = readFile(DAY3_FILE_NAME)
+    var cO2 = oxygen.toList()
 
-    for (i in 0..11) {
+    var i = 0
+    while (oxygen.size > 1 || cO2.size > 1) {
         if (oxygen.size > 1) {
             val mostCommonOxygen = find(i, oxygen)
             oxygen = oxygen.filter { it[i] == mostCommonOxygen }
@@ -35,6 +34,8 @@ fun part2() : Int {
             val mostCommonCO2 = find(i, cO2)
             cO2 = cO2.filter { it[i] != mostCommonCO2 }
         }
+
+        i++
     }
 
     return Integer.parseInt(oxygen[0], 2) * Integer.parseInt(cO2[0], 2)
@@ -42,9 +43,7 @@ fun part2() : Int {
 
 fun find(index: Int, lines: List<String>) : Char {
     val count1 = lines.count { it[index] == '1' }
-    val count0 = lines.count { it[index] == '0' }
-
-    return if (count1 >= count0) '1' else '0'
+    return if (count1 >= lines.size - count1) '1' else '0'
 }
 
 fun main() {
