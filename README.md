@@ -13,6 +13,10 @@ If you're interested in trying out Kotlin for AoC this year or even next, check 
 
 ...
 
+## :heart: Community Inspired
+
+After I finish my initial stab at a puzzle, I like to look at other #aoc-2021-in-kotlin repos for inspiration. Lots of times I see solutions that make me think: "Wow! That's cool!" This year I'll be keeping track of my [Favorite Solutions](src/main/kotlin/com/github/markaalvaro/advent2021/CommunityInspired.kt) from the community (with minor changes to meet this project's style).
+
 ## :nerd_face: Favorite Kotlin Features
 
 ### 1. `windowed(2)`
