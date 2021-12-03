@@ -14,17 +14,16 @@ fun List<String>.mostCommonBit(index: Int): Char {
 fun binaryDiagnostic1(): Int {
     val gamma = readFile(FILE_NAME)
         .asSequence()
-        .map { it.toList() }
-        .flatMap { it.withIndex() }
+        .flatMap { it.toList().withIndex() }
         .groupBy { it.index }
-        .map { it.value }
         .map {
-            it.map { indexedValue -> indexedValue.value }
+            it.value
+                .map { indexedValue -> indexedValue.value }
                 .groupingBy { digit -> digit }
                 .eachCount()
                 .maxByOrNull { count -> count.value }
+                ?.key
         }
-        .map { it?.key }
         .joinToString("")
 
     val epsilon = gamma.toList().map { if (it == '1') '0' else '1' }.joinToString("")
