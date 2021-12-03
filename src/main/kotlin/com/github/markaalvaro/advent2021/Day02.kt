@@ -1,40 +1,36 @@
 package com.github.markaalvaro.advent2021
 
-const val DAY_2_FILE_NAME = "Day02.txt"
+const val DAY2_FILE_NAME = "Day02.txt"
 
-fun dive1(fileName: String): Int {
+fun dive1(): Int {
     var depth = 0
     var horizontal = 0
 
-    readFile(fileName) { it.split(" ") }
+    readFile(DAY2_FILE_NAME) { it.split(" ") }
+        .map { (direction, value) -> Pair(direction, value.toInt()) }
         .forEach { (direction, value) ->
-            value.toInt().also {
-                when (direction) {
-                    "forward" -> horizontal += it
-                    "down" -> depth += it
-                    "up" -> depth -= it
-                }
+            when (direction) {
+                "forward" -> horizontal += value
+                "down" -> depth += value
+                "up" -> depth -= value
             }
         }
 
     return depth * horizontal
 }
 
-fun dive2(fileName: String): Int {
+fun dive2(): Int {
     var depth = 0
     var horizontal = 0
     var aim = 0
 
-    readFile(fileName) { it.split(" ") }
+    readFile(DAY2_FILE_NAME) { it.split(" ") }
+        .map { (direction, value) -> Pair(direction, value.toInt()) }
         .forEach { (direction, value) ->
-            value.toInt().also {
-                when (direction) {
-                    "forward" -> {
-                        horizontal += it; depth += aim * it
-                    }
-                    "down" -> aim += it
-                    "up" -> aim -= it
-                }
+            when (direction) {
+                "forward" -> { horizontal += value; depth += aim * value }
+                "down" -> aim += value
+                "up" -> aim -= value
             }
         }
 
@@ -42,6 +38,6 @@ fun dive2(fileName: String): Int {
 }
 
 fun main() {
-    println(dive1(DAY_2_FILE_NAME))
-    println(dive2(DAY_2_FILE_NAME))
+    println(dive1())
+    println(dive2())
 }
