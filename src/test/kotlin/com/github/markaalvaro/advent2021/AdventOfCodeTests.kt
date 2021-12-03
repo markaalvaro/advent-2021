@@ -24,4 +24,14 @@ class AdventOfCodeTests {
     fun `test Day 2 Dive Part Two`() {
         assertEquals(1982495697, dive2())
     }
+
+    @Test
+    fun `test Day 3 Binary Diagnostic One`() {
+        assertEquals(2035764, binaryDiagnostic1())
+    }
+
+    @Test
+    fun `test Day 3 Binary Diagnostic Part Two`() {
+        assertEquals(2817661, binaryDiagnostic2())
+    }
 }

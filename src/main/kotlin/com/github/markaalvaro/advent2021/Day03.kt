@@ -2,7 +2,7 @@ package com.github.markaalvaro.advent2021
 
 const val DAY3_FILE_NAME = "Day03.txt"
 
-fun part1() : Int {
+fun binaryDiagnostic1() : Int {
     val counts = mutableMapOf<Int, Int>()
     readFile(DAY3_FILE_NAME)
         .map { it.toList() }
@@ -13,25 +13,25 @@ fun part1() : Int {
             }
         }
 
-    val a = counts.values.map { it > 500 }.joinToString("") { if (it) "1" else "0" }
-    val b = a.toList().map { if (it == '1') '0' else '1' }.joinToString("")
+    val gamma = counts.values.map { it > 500 }.joinToString("") { if (it) "1" else "0" }
+    val epsilon = gamma.toList().map { if (it == '1') '0' else '1' }.joinToString("")
 
-    return Integer.parseInt(a, 2) * Integer.parseInt(b, 2)
+    return Integer.parseInt(gamma, 2) * Integer.parseInt(epsilon, 2)
 }
 
-fun part2() : Int {
+fun binaryDiagnostic2() : Int {
     var oxygen = readFile(DAY3_FILE_NAME)
     var cO2 = oxygen.toList()
 
     var i = 0
     while (oxygen.size > 1 || cO2.size > 1) {
         if (oxygen.size > 1) {
-            val mostCommonOxygen = find(i, oxygen)
+            val mostCommonOxygen = findMostCommonBit(i, oxygen)
             oxygen = oxygen.filter { it[i] == mostCommonOxygen }
         }
 
         if (cO2.size > 1) {
-            val mostCommonCO2 = find(i, cO2)
+            val mostCommonCO2 = findMostCommonBit(i, cO2)
             cO2 = cO2.filter { it[i] != mostCommonCO2 }
         }
 
@@ -41,12 +41,12 @@ fun part2() : Int {
     return Integer.parseInt(oxygen[0], 2) * Integer.parseInt(cO2[0], 2)
 }
 
-fun find(index: Int, lines: List<String>) : Char {
+fun findMostCommonBit(index: Int, lines: List<String>) : Char {
     val count1 = lines.count { it[index] == '1' }
     return if (count1 >= lines.size - count1) '1' else '0'
 }
 
 fun main() {
-    println(part1())
-    println(part2())
+    println(binaryDiagnostic1())
+    println(binaryDiagnostic2())
 }
