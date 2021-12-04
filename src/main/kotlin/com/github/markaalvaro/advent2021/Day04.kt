@@ -29,7 +29,7 @@ fun giantSquid2(): Int {
                 return calculateScore(boards.first(), numsSoFar)
         }
         else
-            boards = boards.filter { !isBingo(it, numsSoFar) }.toMutableList()
+            boards = boards.filter { !isBingo(it, numsSoFar) }.toList()
     }
 
     throw IllegalStateException("Expected a single last board to win")
@@ -44,7 +44,7 @@ private fun getNumbers(input: List<String>): List<Int> {
     return input[0].split(",").map { it.toInt() }
 }
 
-private fun getBoards(input: List<String>): MutableList<List<Int>> {
+private fun getBoards(input: List<String>): List<List<Int>> {
     return input.drop(2)
         .chunked(6)
         .map { boardLines ->
@@ -52,10 +52,10 @@ private fun getBoards(input: List<String>): MutableList<List<Int>> {
                 .flatMap { it.split("\\s+".toRegex()) }
                 .map { it.toInt() }
         }
-        .toMutableList()
+        .toList()
 }
 
-private fun isBingo(board: List<Int>, numbers: MutableSet<Int>): Boolean {
+private fun isBingo(board: List<Int>, numbers: Set<Int>): Boolean {
     for (i in 0..4) {
         // Check rows
         val start = i * 5
@@ -69,6 +69,6 @@ private fun isBingo(board: List<Int>, numbers: MutableSet<Int>): Boolean {
     return false
 }
 
-private fun calculateScore(board: List<Int>, numsSoFar: MutableSet<Int>): Int {
+private fun calculateScore(board: List<Int>, numsSoFar: Set<Int>): Int {
     return (board - numsSoFar.toSet()).sum() * numsSoFar.last()
 }
