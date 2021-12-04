@@ -5,7 +5,7 @@ private const val FILE_NAME = "Day01.txt"
 fun sonarSweep1(): Int {
     return readFile(FILE_NAME) { it.toInt() }
         .windowed(2)
-        .count { (sum1, sum2) -> sum2 > sum1 }
+        .count { (num1, num2) -> num2 > num1 }
 }
 
 fun sonarSweep2(): Int {

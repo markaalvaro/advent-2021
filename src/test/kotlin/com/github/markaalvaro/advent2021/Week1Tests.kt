@@ -3,7 +3,7 @@ package com.github.markaalvaro.advent2021
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class AdventOfCodeTests {
+class Week1Tests {
 
     @Test
     fun `test Day 1 Sonar Sweep Part One`() {
@@ -33,5 +33,15 @@ class AdventOfCodeTests {
     @Test
     fun `test Day 3 Binary Diagnostic Part Two`() {
         assertEquals(2817661, binaryDiagnostic2())
+    }
+
+    @Test
+    fun `test Day 4 Giant Squid Part One`() {
+        assertEquals(44736, giantSquid1())
+    }
+
+    @Test
+    fun `test Day 4 Giant Squid Part Two`() {
+        assertEquals(1827, giantSquid2())
     }
 }
