@@ -40,20 +40,6 @@ fun main() {
     println(giantSquid2())
 }
 
-private fun isBingo(board: List<Int>, numbers: List<Int>): Boolean {
-    for (i in 0..4) {
-        // Check rows
-        val start = i * 5
-        val row = listOf(board[start], board[start + 1], board[start + 2], board[start + 3], board[start + 4])
-        if (numbers.containsAll(row)) return true
-
-        // Check columns
-        val column = listOf(board[i], board[i + 5], board[i + 10], board[i + 15], board[i + 20])
-        if (numbers.containsAll(column)) return true
-    }
-    return false
-}
-
 private fun getNumbers(input: List<String>): List<Int> {
     return input[0].split(",").map { it.toInt() }
 }
@@ -69,6 +55,20 @@ private fun getBoards(input: List<String>): MutableList<List<Int>> {
                 .map { it.toInt() }
         }
         .toMutableList()
+}
+
+private fun isBingo(board: List<Int>, numbers: List<Int>): Boolean {
+    for (i in 0..4) {
+        // Check rows
+        val start = i * 5
+        val row = listOf(board[start], board[start + 1], board[start + 2], board[start + 3], board[start + 4])
+        if (numbers.containsAll(row)) return true
+
+        // Check columns
+        val column = listOf(board[i], board[i + 5], board[i + 10], board[i + 15], board[i + 20])
+        if (numbers.containsAll(column)) return true
+    }
+    return false
 }
 
 private fun calculateScore(board: List<Int>, numsSoFar: List<Int>): Int {
