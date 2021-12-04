@@ -7,7 +7,7 @@ fun giantSquid1(): Int {
     val numbers = getNumbers(input)
     val boards = getBoards(input)
 
-    val numsSoFar = mutableListOf<Int>()
+    val numsSoFar = mutableSetOf<Int>()
     for (num in numbers) {
         numsSoFar.add(num)
         boards.firstOrNull { isBingo(it, numsSoFar) }?.let { return calculateScore(it, numsSoFar) }
@@ -21,12 +21,12 @@ fun giantSquid2(): Int {
     val numbers = getNumbers(input)
     var boards = getBoards(input)
 
-    val numsSoFar = mutableListOf<Int>()
+    val numsSoFar = mutableSetOf<Int>()
     for (num in numbers) {
         numsSoFar.add(num)
         if (boards.size == 1) {
-            if (isBingo(boards[0], numsSoFar))
-                return calculateScore(boards[0], numsSoFar)
+            if (isBingo(boards.first(), numsSoFar))
+                return calculateScore(boards.first(), numsSoFar)
         }
         else
             boards = boards.filter { !isBingo(it, numsSoFar) }.toMutableList()
@@ -49,15 +49,13 @@ private fun getBoards(input: List<String>): MutableList<List<Int>> {
         .chunked(6)
         .map { boardLines ->
             boardLines.take(5)
-                .flatMap { it.split(",") }
-                .flatMap { it.split(" ") }
-                .filter { it != "" }
+                .flatMap { it.split("\\s+".toRegex()) }
                 .map { it.toInt() }
         }
         .toMutableList()
 }
 
-private fun isBingo(board: List<Int>, numbers: List<Int>): Boolean {
+private fun isBingo(board: List<Int>, numbers: MutableSet<Int>): Boolean {
     for (i in 0..4) {
         // Check rows
         val start = i * 5
@@ -71,6 +69,6 @@ private fun isBingo(board: List<Int>, numbers: List<Int>): Boolean {
     return false
 }
 
-private fun calculateScore(board: List<Int>, numsSoFar: List<Int>): Int {
+private fun calculateScore(board: List<Int>, numsSoFar: MutableSet<Int>): Int {
     return (board - numsSoFar.toSet()).sum() * numsSoFar.last()
 }
