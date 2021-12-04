@@ -36,7 +36,7 @@ fun giantSquid2(): Int {
 }
 
 fun main() {
-    println(giantSquid2())
+    println(giantSquid1())
     println(giantSquid2())
 }
 
