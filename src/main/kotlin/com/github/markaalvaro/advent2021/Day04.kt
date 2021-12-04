@@ -70,5 +70,5 @@ private fun isBingo(board: List<Int>, numbers: Set<Int>): Boolean {
 }
 
 private fun calculateScore(board: List<Int>, numsSoFar: Set<Int>): Int {
-    return (board - numsSoFar.toSet()).sum() * numsSoFar.last()
+    return (board - numsSoFar).sum() * numsSoFar.last()
 }
