@@ -31,7 +31,7 @@ Pass in a filter expression as an argument to `count { ... }`, saving the extra 
 
 ### 3. Multi-line String for Regexes
 
-Use multi-line Strings for regexes to avoid needing to escape /s. For example:
+Use multi-line Strings for regexes to avoid needing to escape `\ `s, which improves regex readability. For example, consider the following greedy whitespace regex (in Java `"\\s+"`):
 
 ```kotlin
 boardLines.take(5)
