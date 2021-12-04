@@ -49,7 +49,7 @@ private fun getBoards(input: List<String>): List<List<Int>> {
         .chunked(6)
         .map { boardLines ->
             boardLines.take(5)
-                .flatMap { it.split("\\s+".toRegex()) }
+                .flatMap { it.split("""\s+""".toRegex()) }
                 .map { it.toInt() }
         }
         .toList()

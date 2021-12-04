@@ -29,3 +29,14 @@ A function that can be used on `Iterable`s and `Sequence`s to look at rolling wi
 
 Pass in a filter expression as an argument to `count { ... }`, saving the extra line needed by a `filter { ... }` when a COUNT WHERE is needed.
 
+### 3. Multi-line String for Regexes
+
+Use multi-line Strings for regexes to avoid needing to escape /s. For example:
+
+```kotlin
+boardLines.take(5)
+    .flatMap { it.split("""\s+""".toRegex()) }
+    .map { it.toInt() }
+```
+
+
