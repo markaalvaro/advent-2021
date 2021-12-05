@@ -44,4 +44,14 @@ class Week1Tests {
     fun `test Day 4 Giant Squid Part Two`() {
         assertEquals(1827, giantSquid2())
     }
+
+    @Test
+    fun `test Day 5 Hydrothermal Venture Part One`() {
+        assertEquals(6841, hydrothermalVenture1())
+    }
+
+    @Test
+    fun `test Day 5 Hydrothermal Venture Part Two`() {
+        assertEquals(19258, hydrothermalVenture2())
+    }
 }
