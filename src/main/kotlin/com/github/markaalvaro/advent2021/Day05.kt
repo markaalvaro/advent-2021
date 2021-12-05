@@ -45,14 +45,14 @@ data class Segment(val start: Point, val end: Point) {
 }
 
 fun hydrothermalVenture1(): Int {
-    return countOverLappingPoints { !it.isDiagonal() }
+    return countOverlappingPoints { !it.isDiagonal() }
 }
 
 fun hydrothermalVenture2(): Int {
-    return countOverLappingPoints()
+    return countOverlappingPoints()
 }
 
-private fun countOverLappingPoints(filter: (Segment) -> Boolean = { true }): Int {
+private fun countOverlappingPoints(filter: (Segment) -> Boolean = { true }): Int {
     val pointCounts = mutableMapOf<Point, Int>()
 
     readFile(FILE_NAME) {
