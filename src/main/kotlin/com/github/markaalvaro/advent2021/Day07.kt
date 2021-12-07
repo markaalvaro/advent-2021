@@ -9,7 +9,6 @@ fun treacheryOfWhales1(): Int {
     val input = readFile(FILE_NAME)[0]
         .split(",")
         .map { it.toInt() }
-        .toMutableList()
 
     var previousCost = input.sum()
     var minCost = previousCost
