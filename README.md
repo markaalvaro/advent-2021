@@ -12,8 +12,9 @@ If you're interested in trying out Kotlin for AoC this year or even next, check 
 4. :star::star: (12/4/2021) [Solution](src/main/kotlin/com/github/markaalvaro/advent2021/Day04.kt)
 5. :star::star: (12/5/2021) [Solution](src/main/kotlin/com/github/markaalvaro/advent2021/Day05.kt)
 6. :star::star: (12/6/2021) [Solution](src/main/kotlin/com/github/markaalvaro/advent2021/Day06.kt)
-7. \-
+7. :star::star: (12/7/2021) [Solution](src/main/kotlin/com/github/markaalvaro/advent2021/Day07.kt)
 8. \-
+9. \-
 
 ...
 
