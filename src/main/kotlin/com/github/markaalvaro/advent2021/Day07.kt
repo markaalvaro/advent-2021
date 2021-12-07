@@ -17,7 +17,7 @@ fun treacheryOfWhales1(): Int {
     for (i in 1..input.lastIndex) {
         var cost = previousCost
         input.forEach {
-            if (gettingCloser(it, i)) cost--
+            if (abs(it - (i - 1)) > abs(it - i)) cost--
             else cost++
         }
         minCost = min(minCost, cost)
@@ -27,21 +27,23 @@ fun treacheryOfWhales1(): Int {
     return minCost
 }
 
-data class Value(val num: Int, var cost: Int, var diff: Int)
+data class Value(val num: Int, var diff: Int) {
+    fun gettingCloser(index: Int) = abs(num - (index - 1)) > abs(num - index)
+}
 
 fun treacheryOfWhales2(): Int {
     val input = readFile(FILE_NAME)[0]
         .split(",")
         .map { it.toInt() }
-        .map { num -> Value(num, triangularNumber(num), num) }
+        .map { num -> Value(num, num) }
 
-    var previousCost = input.sumOf { it.cost }
+    var previousCost = input.sumOf { triangularNumber(it.num) }
     var minCost = previousCost
 
     for (i in 1..input.lastIndex) {
         var cost = previousCost
         input.forEach {
-            if (gettingCloser(it.num, i)) cost -= it.diff--
+            if (it.gettingCloser(i)) cost -= it.diff--
             else cost += ++it.diff
         }
         minCost = min(minCost, cost)
@@ -63,8 +65,4 @@ private fun triangularNumber(n: Int): Int {
         memoized[n] = result
         result
     }
-}
-
-private fun gettingCloser(num: Int, index: Int): Boolean {
-    return abs(num - (index - 1)) > abs(num - index)
 }
