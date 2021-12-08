@@ -1,6 +1,7 @@
 package com.github.markaalvaro.advent2021
 
 import kotlin.math.abs
+import kotlin.math.min
 
 private const val FILE_NAME = "Day07.txt"
 
@@ -8,52 +9,47 @@ fun treacheryOfWhales1(): Int {
     val input = readFile(FILE_NAME)[0]
         .split(",")
         .map { it.toInt() }
-        .toMutableList()
 
-    val costs = mutableListOf<Int>()
-    costs.add(input.sum())
+    var previousCost = input.sum()
+    var minCost = previousCost
 
     for (i in 1..input.lastIndex) {
-        var cost = costs[i - 1]
+        var cost = previousCost
         input.forEach {
-            if (gettingCloser(it, i)) cost--
+            if (abs(it - (i - 1)) > abs(it - i)) cost--
             else cost++
         }
-        costs.add(cost)
+        minCost = min(minCost, cost)
+        previousCost = cost
     }
 
-    return costs.minOrNull()!!
+    return minCost
 }
 
-data class Value(val num: Int, var cost: Int, var diff: Int)
+data class Value(val num: Int, var diff: Int) {
+    fun gettingCloser(index: Int) = abs(num - (index - 1)) > abs(num - index)
+}
 
 fun treacheryOfWhales2(): Int {
     val input = readFile(FILE_NAME)[0]
         .split(",")
         .map { it.toInt() }
-        .map { num ->
-            val cost = triangularNumber(num)
-            Value(num, cost, num)
-        }
+        .map { num -> Value(num, num) }
 
-    val costs = mutableListOf<Int>()
-    costs.add(input.sumOf { it.cost })
+    var previousCost = input.sumOf { triangularNumber(it.num) }
+    var minCost = previousCost
 
     for (i in 1..input.lastIndex) {
-        var cost = costs[i - 1]
+        var cost = previousCost
         input.forEach {
-            if (gettingCloser(it.num, i)) {
-                cost -= it.diff
-                it.diff--
-            } else {
-                it.diff++
-                cost += it.diff
-            }
+            if (it.gettingCloser(i)) cost -= it.diff--
+            else cost += ++it.diff
         }
-        costs.add(cost)
+        minCost = min(minCost, cost)
+        previousCost = cost
     }
 
-    return costs.minOrNull()!!
+    return minCost
 }
 
 fun main() {
@@ -63,12 +59,9 @@ fun main() {
 
 val memoized = mutableMapOf<Int, Int>()
 private fun triangularNumber(n: Int): Int {
-    if (memoized.containsKey(n)) return memoized[n]!!
-    val result = (n * (n + 1)) / 2
-    memoized[n] = result
-    return result
-}
-
-private fun gettingCloser(num: Int, index: Int): Boolean {
-    return abs(num - (index - 1)) > abs(num - index)
+    return memoized[n] ?: run {
+        val result = (n * (n + 1)) / 2
+        memoized[n] = result
+        result
+    }
 }
