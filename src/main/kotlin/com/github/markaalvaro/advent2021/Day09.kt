@@ -16,7 +16,7 @@ fun List<List<Node>>.isLow(row: Int, col: Int): Boolean {
 
 fun smokeBasin1(): Int {
     val input = readFile(FILE_NAME) { it.toList() }
-        .map { it.map(Character::getNumericValue).map { Node(it) } }
+        .map { it.map(Character::getNumericValue).map { size -> Node(size) } }
 
     var sum = 0
     for (r in 0..input.lastIndex)
