@@ -4,14 +4,14 @@ private const val FILE_NAME = "Day08.txt"
 
 fun <K, V> Map<K, V>.reverse() = map { Pair(it.value, it.key) }.toMap()
 
-fun sevenSegmentSearch1() : Int {
+fun sevenSegmentSearch1(): Int {
     val interestingLengths = setOf(2, 3, 4, 7)
     return readFile(FILE_NAME) { it.split(" | ")[1] }
         .flatMap { it.split(" ") }
         .count { it.length in interestingLengths }
 }
 
-fun sevenSegmentSearch2() : Int {
+fun sevenSegmentSearch2(): Int {
     return readFile(FILE_NAME) { it.split(" | ") }
         .map { (clues, display) -> Pair(clues.split(' '), display) }
         .sumOf { (clues, display) ->
@@ -30,13 +30,14 @@ fun sevenSegmentSearch2() : Int {
             val aTransformed = (cluesByLength[3]!! - cluesByLength[2]!!).first()
             letterMappings[aTransformed] = 'a'
 
-            val cTransformed = characterCounts.toList().filter { (character, count) -> count == 8 && character != aTransformed }.map { it.first }[0]
+            val cTransformed = characterCounts.toList()
+                .first { (character, count) -> count == 8 && character != aTransformed }.first
             letterMappings[cTransformed] = 'c'
 
             val dTransformed = (cluesByLength[4]!! - setOf(bTransformed, cTransformed, fTransformed)).first()
             letterMappings[dTransformed] = 'd'
 
-            val gTransformed = (setOf('a', 'b', 'c', 'd', 'e', 'f', 'g') - letterMappings.keys).first()
+            val gTransformed = (('a'..'g').toSet() - letterMappings.keys).first()
             letterMappings[gTransformed] = 'g'
 
             display.split(" ").map { clue -> clue.toList().map { letterMappings[it] }.toSet() }

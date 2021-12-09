@@ -14,4 +14,14 @@ class Week2Tests {
     fun `test Day 8 Seven Segment Search Part Two`() {
         assertEquals(946346, sevenSegmentSearch2())
     }
+
+    @Test
+    fun `test Day 9 Smoke Basin Part One`() {
+        assertEquals(506, smokeBasin1())
+    }
+
+    @Test
+    fun `test Day 9 Smoke Basin Part Two`() {
+        assertEquals(931200, smokeBasin2())
+    }
 }
