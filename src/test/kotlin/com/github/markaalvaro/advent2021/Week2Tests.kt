@@ -24,4 +24,14 @@ class Week2Tests {
     fun `test Day 9 Smoke Basin Part Two`() {
         assertEquals(931200, smokeBasin2())
     }
+
+    @Test
+    fun `test Day 10 Syntax Scoring Part One`() {
+        assertEquals(290691, syntaxScoring1())
+    }
+
+    @Test
+    fun `test Day 10 Syntax Scoring Part Two`() {
+        assertEquals(2768166558, syntaxScoring2())
+    }
 }
