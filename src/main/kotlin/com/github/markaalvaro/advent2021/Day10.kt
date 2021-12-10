@@ -37,13 +37,9 @@ fun syntaxScoring2() : Long {
                     else { return@map 0 }
                 }
             }
-            var score = 0L
-            for (bracket in stack.reversed()) {
-                score *= 5
-                score += closeToScore2[bracket]!!
-            }
 
-            score
+            stack.reversed()
+                .fold(0L) { acc, bracket -> acc * 5 + closeToScore2[bracket]!! }
         }
         .filter { it != 0L }
         .sorted()
