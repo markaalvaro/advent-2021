@@ -5,9 +5,9 @@ import kotlin.math.min
 
 private const val FILE_NAME = "Day11.txt"
 
-typealias Octopi = List<List<Octopus>>
-
 data class Octopus(var energy: Int, var flashed: Boolean = false)
+
+typealias Octopi = List<List<Octopus>>
 
 fun dumboOctopus1(): Int {
     val octopi = readFile(FILE_NAME) { it.toList() }
@@ -68,15 +68,13 @@ private fun Octopi.reset(): Boolean {
 
 private fun flashRecursive(input: Octopi, row: Int, col: Int): Int {
     var total = 1
-    val octopus = input[row][col]
-
-    octopus.flashed = true
+    input[row][col].flashed = true
 
     for (r in max(0, row - 1)..min(input.lastIndex, row + 1))
         for (c in max(0, col - 1)..min(input[0].lastIndex, col + 1)) {
             val current = input[r][c]
             current.energy++
-            if ((r != row || c != col) && current.energy > 9 && !current.flashed) {
+            if (current.energy > 9 && !current.flashed) {
                 total += flashRecursive(input, r, c)
             }
         }
