@@ -34,4 +34,14 @@ class Week2Tests {
     fun `test Day 10 Syntax Scoring Part Two`() {
         assertEquals(2768166558, syntaxScoring2())
     }
+
+    @Test
+    fun `test Day 11 Dumbo Octopus Part One`() {
+        assertEquals(1615, dumboOctopus1())
+    }
+
+    @Test
+    fun `test Day 11 Dumbo Octopus Part Two`() {
+        assertEquals(249, dumboOctopus2())
+    }
 }
