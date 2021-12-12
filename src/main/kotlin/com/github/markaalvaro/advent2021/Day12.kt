@@ -4,7 +4,6 @@ private const val FILE_NAME = "Day12.txt"
 private const val START = "start"
 private const val END = "end"
 
-
 data class Link(val name: String, val links: MutableSet<Link> = mutableSetOf()) {
 
     override fun equals(other: Any?): Boolean {
@@ -16,7 +15,6 @@ data class Link(val name: String, val links: MutableSet<Link> = mutableSetOf()) 
     }
 }
 
-
 fun passagePathing1(): Int {
     val graph = mutableMapOf<String, Link>()
     val paths = mutableListOf<List<Link>>()
@@ -24,7 +22,7 @@ fun passagePathing1(): Int {
 
     var counter = 0
     while (paths.isNotEmpty()) {
-        for (path in paths.toList()) { // TODO avoid making copy
+        for (path in paths.toList()) {
             val lastLink = path.last()
             val visited = path.map { it.name }
 
@@ -73,7 +71,6 @@ fun passagePathing2(): Int {
 
     return counter
 }
-
 
 fun main() {
     println(passagePathing1())
