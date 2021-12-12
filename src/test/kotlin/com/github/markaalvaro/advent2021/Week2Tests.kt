@@ -44,4 +44,14 @@ class Week2Tests {
     fun `test Day 11 Dumbo Octopus Part Two`() {
         assertEquals(249, dumboOctopus2())
     }
+
+    @Test
+    fun `test Day 12 Passage Pathing Part One`() {
+        assertEquals(4885, passagePathing1())
+    }
+
+    @Test
+    fun `test Day 12 Passage Pathing Part Two`() {
+        assertEquals(117095, passagePathing2())
+    }
 }
