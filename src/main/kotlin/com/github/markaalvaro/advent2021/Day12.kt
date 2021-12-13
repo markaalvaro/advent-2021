@@ -5,53 +5,27 @@ private const val START = "start"
 private const val END = "end"
 
 data class Link(val name: String, val links: MutableSet<Link> = mutableSetOf()) {
-
-    override fun equals(other: Any?): Boolean {
-        return name == (other as Link).name
-    }
-
-    override fun hashCode(): Int {
-        return name.hashCode()
-    }
+    override fun equals(other: Any?) = name == (other as Link).name
+    override fun hashCode() = name.hashCode()
 }
 
 fun passagePathing1(): Int {
-    val graph = mutableMapOf<String, Link>()
-    val paths = mutableListOf<List<Link>>()
-    populateGraph(graph, paths)
-
-    var counter = 0
-    while (paths.isNotEmpty()) {
-        for (path in paths.toList()) {
-            val lastLink = path.last()
-            val visited = path.map { it.name }
-
-            paths.remove(path)
-            if (lastLink.name == END) {
-                counter++
-            } else {
-                for (toLink in lastLink.links) {
-                    if (toLink.name !in visited || toLink.name[0].isUpperCase())
-                        paths += path + toLink
-                }
-            }
-        }
-    }
-
-    return counter
+    return passagePathing(false)
 }
 
 fun passagePathing2(): Int {
-    val paths = mutableListOf<List<Link>>()
-    val graph = mutableMapOf<String, Link>()
-    populateGraph(graph, paths)
+    return passagePathing(true)
+}
+
+fun passagePathing(allowDoubleVisit: Boolean): Int {
+    val paths = getPaths()
 
     var counter = 0
     while (paths.isNotEmpty()) {
         for (path in paths.toList()) {
             val lastLink = path.last()
 
-            val visited = path.map { it.name }
+            val visited = path.map { it.name }.toSet()
             val visitedTwice = path.groupingBy { it.name }
                 .eachCount()
                 .filter { (value, count) -> count > 1 && !value[0].isUpperCase() }
@@ -62,7 +36,7 @@ fun passagePathing2(): Int {
                 counter++
             } else {
                 for (toLink in lastLink.links) {
-                    if (toLink.name !in visited || !visitedTwice || toLink.name[0].isUpperCase())
+                    if (toLink.name !in visited || (allowDoubleVisit && !visitedTwice) || toLink.name[0].isUpperCase())
                         paths += path + toLink
                 }
             }
@@ -77,7 +51,10 @@ fun main() {
     println(passagePathing2())
 }
 
-private fun populateGraph(graph: MutableMap<String, Link>, paths: MutableList<List<Link>>) {
+private fun getPaths(): MutableSet<List<Link>> {
+    val paths = mutableSetOf<List<Link>>()
+    val graph = mutableMapOf<String, Link>()
+
     readFile(FILE_NAME) { it.split("-") }
         .forEach { (from, to) ->
             val fromLink = graph.getOrPut(from) { Link(from) }
@@ -88,4 +65,6 @@ private fun populateGraph(graph: MutableMap<String, Link>, paths: MutableList<Li
 
             if (fromLink.name == START && paths.isEmpty()) paths += mutableListOf(fromLink)
         }
+
+    return paths
 }
