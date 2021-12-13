@@ -26,8 +26,7 @@ fun passagePathing(allowDoubleVisit: Boolean): Int {
             val lastLink = path.last()
 
             val visited = path.map { it.name }.toSet()
-            val visitedTwice = path.groupingBy { it.name }
-                .eachCount()
+            val visitedTwice = path.groupingBy { it.name }.eachCount()
                 .filter { (value, count) -> count > 1 && !value[0].isUpperCase() }
                 .any()
 
@@ -64,6 +63,7 @@ private fun getPaths(): MutableSet<List<Link>> {
             if (fromLink.name != START) toLink.links.add(fromLink)
 
             if (fromLink.name == START && paths.isEmpty()) paths += mutableListOf(fromLink)
+            if (toLink.name == START && paths.isEmpty()) paths += mutableListOf(toLink)
         }
 
     return paths
