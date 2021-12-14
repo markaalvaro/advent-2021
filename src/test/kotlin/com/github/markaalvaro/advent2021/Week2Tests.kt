@@ -54,4 +54,15 @@ class Week2Tests {
     fun `test Day 12 Passage Pathing Part Two`() {
         assertEquals(117095, passagePathing2())
     }
+
+    @Test
+    fun `test Day 13 Transparent Origami Part One`() {
+        assertEquals(759, transparentOragami1())
+    }
+
+    @Test
+    fun `test Day 13 Transparent Origami Part Two`() {
+        assertEquals(102, transparentOragami2())
+    }
+
 }
