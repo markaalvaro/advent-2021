@@ -65,4 +65,13 @@ class Week2Tests {
         assertEquals(102, transparentOragami2())
     }
 
+    @Test
+    fun `test Day 14 Extended Polymerization Part One`() {
+        assertEquals(2587, extendedPolymerization1())
+    }
+
+    @Test
+    fun `test Day 14 Extended Polymerization Part Two`() {
+        assertEquals(3318837563123, extendedPolymerization2())
+    }
 }
