@@ -54,12 +54,10 @@ fun getRiskLevels(): Array<Array<Position>> {
 
 fun shortestPath(riskLevels: Array<Array<Position>>): Int {
     val unvisited = riskLevels.map { it.toList() }.flatten().toMutableSet()
-    val visited = mutableSetOf<Position>()
 
     while (unvisited.isNotEmpty()) {
         val current = unvisited.minByOrNull { it.cumulative }!!
         modifyNeighbors(riskLevels, current)
-        visited.add(current)
         unvisited.remove(current)
     }
 
