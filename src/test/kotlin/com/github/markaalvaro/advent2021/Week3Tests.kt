@@ -7,13 +7,13 @@ import kotlin.test.assertEquals
 class Week3Tests {
 
     @Test
-    fun `test Day 8 Chiton Part One`() {
+    fun `test Day 15 Chiton Part One`() {
         assertEquals(619, chiton1())
     }
 
-    @Disabled
+    @Disabled("This should work, but it's too slow, especially to run on GitHub Actions")
     @Test
-    fun `test Day 8 Chiton Part Two`() {
+    fun `test Day 15 Chiton Part Two`() {
         assertEquals(2922, chiton2())
     }
 }
